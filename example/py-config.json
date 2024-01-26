@@ -1,0 +1,6 @@
+{
+   "name":"py-cli project",
+   "apipath":"./src/py-api/",
+   "pagepath":"./src/py-pages/",
+   "datapath":"./src/py-raw-jsons/"
+}
