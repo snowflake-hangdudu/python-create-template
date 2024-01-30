@@ -4,7 +4,7 @@ const { request } = http;
 
 /** 模型 */
 export interface adminModel {
-  name?: string;
+    name?: string;
   age?: number;
   email?: string;
 }
@@ -46,12 +46,13 @@ export default class adminQuery extends Queryable<
   // 表单规则
   get rules() {
     return {
-      /** name */
-      name: [{ required: true, message: "必填", trigger: "blur" }],
-      /** age */
-      age: [{ required: true, message: "必填", trigger: "blur" }],
-      /** email */
-      email: [{ required: true, message: "必填", trigger: "blur" }],
+      
+  /** name */
+  name: [{ required: true, message: '必填', trigger: 'blur' }],
+  /** age */
+  age: [{ required: true, message: '必填', trigger: 'blur' }],
+  /** email */
+  email: [{ required: true, message: '必填', trigger: 'blur' }],
     };
   }
 

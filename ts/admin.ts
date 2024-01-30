@@ -3,17 +3,19 @@ import http from "@/config/axios";
 const { request } = http;
 
 /** 模型 */
-export interface TableNameModel {
-  /** interface */
+export interface adminModel {
+    name?: string;
+  age?: number;
+  email?: string;
 }
 
 /** 搜索条件 */
-export interface TableNameQueryParmas extends BasicQueryParams {}
+export interface adminQueryParmas extends BasicQueryParams {}
 
-/** 数据源，增删查改等请求 */
-export default class TableNameQuery extends Queryable<
-  TableNameModel,
-  TableNameQueryParmas
+/** admin源，增删查改等请求 */
+export default class adminQuery extends Queryable<
+  adminModel,
+  adminQueryParmas
 > {
   // 可设置父ID，例如查询用户下的全部文章
   // constructor(id) {
@@ -23,33 +25,39 @@ export default class TableNameQuery extends Queryable<
 
   /** 对象名称 */
   get objectName(): string {
-    return "数据";
+    return "admin";
   }
 
   // 默认的内容
-  get defaultObject(): TableNameModel {
+  get defaultObject(): adminModel {
     return {
       /** property */
     };
   }
 
-  // 读取正在输入的数据，用于表单校验
-  _valueGetter: () => Partial<TableNameModel> = () => ({});
+  // 读取正在输入的admin，用于表单校验
+  _valueGetter: () => Partial<adminModel> = () => ({});
 
-  // 已输入的数据的Getter
-  get currentEditRow(): Partial<TableNameModel> {
+  // 已输入的admin的Getter
+  get currentEditRow(): Partial<adminModel> {
     return this._valueGetter();
   }
 
   // 表单规则
   get rules() {
     return {
-      /** rules */
+      
+  /** name */
+  name: [{ required: true, message: '必填', trigger: 'blur' }],
+  /** age */
+  age: [{ required: true, message: '必填', trigger: 'blur' }],
+  /** email */
+  email: [{ required: true, message: '必填', trigger: 'blur' }],
     };
   }
 
   // 查询全部
-  async all(params: TableNameQueryParmas) {
+  async all(params: adminQueryParmas) {
     let res = await request({
       url: `/api/hospital/tableName/list`,
       method: "get",
@@ -66,7 +74,7 @@ export default class TableNameQuery extends Queryable<
   }
 
   // // 上传修改
-  // async edit(obj: TableNameModel) {
+  // async edit(obj: adminModel) {
   //   console.log("修改", obj);
   //   obj = Object.assign({}, obj);
   //   let id = obj.id;
@@ -79,7 +87,7 @@ export default class TableNameQuery extends Queryable<
   // }
 
   // // 添加
-  // async add(obj: TableNameModel) {
+  // async add(obj: adminModel) {
   //   delete obj.id;
   //   return request({
   //     url: "/api/hospital/tableName",
@@ -89,7 +97,7 @@ export default class TableNameQuery extends Queryable<
   // }
 
   // // 通过id删除
-  // async deleteObj(obj: TableNameModel) {
+  // async deleteObj(obj: adminModel) {
   //   return request({
   //     url: `/api/hospital/tableName/${obj.id}`,
   //     method: "delete",

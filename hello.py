@@ -1,7 +1,7 @@
 import json
 
 # 读取 data.json 文件
-with open("data.json", "r") as file:
+with open("json/data.json", "r") as file:
     data = json.load(file)
 # 获取 title 属性的值
 title = data["title"]
@@ -35,5 +35,5 @@ properties_code = "\n".join([f"  {property_name}?: {property_info['type']};" for
 new_content = new_content.replace("/** interface */", properties_code)
 
 # 将替换后的内容写入新的文件
-with open("new_file.ts", "w", encoding="utf-8") as file:
+with open(f"ts/{title}.ts", "w", encoding="utf-8") as file:
     file.write(new_content)
