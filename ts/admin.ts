@@ -10,9 +10,13 @@ export interface adminModel {
 }
 
 /** 搜索条件 */
-export interface adminQueryParmas extends BasicQueryParams {}
+export interface adminQueryParmas extends BasicQueryParams {
+    name?: string;
+  age?: number;
 
-/** admin源，增删查改等请求 */
+}
+
+/** 数据源，增删查改等请求 */
 export default class adminQuery extends Queryable<
   adminModel,
   adminQueryParmas
@@ -25,7 +29,7 @@ export default class adminQuery extends Queryable<
 
   /** 对象名称 */
   get objectName(): string {
-    return "admin";
+    return 'admin';
   }
 
   // 默认的内容
@@ -35,10 +39,10 @@ export default class adminQuery extends Queryable<
     };
   }
 
-  // 读取正在输入的admin，用于表单校验
+  // 读取正在输入的数据，用于表单校验
   _valueGetter: () => Partial<adminModel> = () => ({});
 
-  // 已输入的admin的Getter
+  // 已输入的数据的Getter
   get currentEditRow(): Partial<adminModel> {
     return this._valueGetter();
   }
@@ -64,6 +68,9 @@ export default class adminQuery extends Queryable<
       params: {
         pageNum: params.pageNum,
         pageSize: params.pageSize,
+       name: params.name,
+age: params.age,
+
       },
     });
     if (res.data.count == undefined) return res.data;

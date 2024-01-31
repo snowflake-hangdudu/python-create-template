@@ -8,7 +8,9 @@ export interface TableNameModel {
 }
 
 /** 搜索条件 */
-export interface TableNameQueryParmas extends BasicQueryParams {}
+export interface TableNameQueryParmas extends BasicQueryParams {
+  /** searchable */
+}
 
 /** 数据源，增删查改等请求 */
 export default class TableNameQuery extends Queryable<
@@ -23,7 +25,7 @@ export default class TableNameQuery extends Queryable<
 
   /** 对象名称 */
   get objectName(): string {
-    return "数据";
+    return '/** tableName */';
   }
 
   // 默认的内容
@@ -56,6 +58,7 @@ export default class TableNameQuery extends Queryable<
       params: {
         pageNum: params.pageNum,
         pageSize: params.pageSize,
+        /** params */
       },
     });
     if (res.data.count == undefined) return res.data;
