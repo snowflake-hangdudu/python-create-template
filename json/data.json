@@ -1,18 +1,30 @@
 {
-  "title": "admin",
+  "title": "Admin",
   "name": {
+    "name": "名称",
     "type": "string",
     "required": true,
-    "searchable": true
+    "searchable": true,
+    "searchType": "input",
+    "showInTable": true,
+    "showType": "string"
   },
   "age": {
+    "name": "年龄",
     "type": "number",
     "required": true,
-    "searchable": true
+    "searchable": true,
+    "searchType": "selectApi",
+    "showInTable": true,
+    "showType": "status"
   },
   "email": {
+    "name": "邮箱",
     "type": "string",
     "required": true,
-    "searchable": false
+    "searchable": true,
+    "searchType": "selectText",
+    "showInTable": false,
+    "showType": "img"
   }
 }

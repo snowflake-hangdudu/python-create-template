@@ -3,23 +3,24 @@ import http from "@/config/axios";
 const { request } = http;
 
 /** 模型 */
-export interface adminModel {
+export interface AdminModel {
     name?: string;
   age?: number;
   email?: string;
 }
 
 /** 搜索条件 */
-export interface adminQueryParmas extends BasicQueryParams {
+export interface AdminQueryParmas extends BasicQueryParams {
     name?: string;
   age?: number;
+  email?: string;
 
 }
 
 /** 数据源，增删查改等请求 */
-export default class adminQuery extends Queryable<
-  adminModel,
-  adminQueryParmas
+export default class AdminQuery extends Queryable<
+  AdminModel,
+  AdminQueryParmas
 > {
   // 可设置父ID，例如查询用户下的全部文章
   // constructor(id) {
@@ -29,21 +30,21 @@ export default class adminQuery extends Queryable<
 
   /** 对象名称 */
   get objectName(): string {
-    return 'admin';
+    return 'Admin';
   }
 
   // 默认的内容
-  get defaultObject(): adminModel {
+  get defaultObject(): AdminModel {
     return {
       /** property */
     };
   }
 
   // 读取正在输入的数据，用于表单校验
-  _valueGetter: () => Partial<adminModel> = () => ({});
+  _valueGetter: () => Partial<AdminModel> = () => ({});
 
   // 已输入的数据的Getter
-  get currentEditRow(): Partial<adminModel> {
+  get currentEditRow(): Partial<AdminModel> {
     return this._valueGetter();
   }
 
@@ -61,7 +62,7 @@ export default class adminQuery extends Queryable<
   }
 
   // 查询全部
-  async all(params: adminQueryParmas) {
+  async all(params: AdminQueryParmas) {
     let res = await request({
       url: `/api/hospital/tableName/list`,
       method: "get",
@@ -70,6 +71,7 @@ export default class adminQuery extends Queryable<
         pageSize: params.pageSize,
        name: params.name,
 age: params.age,
+email: params.email,
 
       },
     });
@@ -81,7 +83,7 @@ age: params.age,
   }
 
   // // 上传修改
-  // async edit(obj: adminModel) {
+  // async edit(obj: AdminModel) {
   //   console.log("修改", obj);
   //   obj = Object.assign({}, obj);
   //   let id = obj.id;
@@ -94,7 +96,7 @@ age: params.age,
   // }
 
   // // 添加
-  // async add(obj: adminModel) {
+  // async add(obj: AdminModel) {
   //   delete obj.id;
   //   return request({
   //     url: "/api/hospital/tableName",
@@ -104,7 +106,7 @@ age: params.age,
   // }
 
   // // 通过id删除
-  // async deleteObj(obj: adminModel) {
+  // async deleteObj(obj: AdminModel) {
   //   return request({
   //     url: `/api/hospital/tableName/${obj.id}`,
   //     method: "delete",
